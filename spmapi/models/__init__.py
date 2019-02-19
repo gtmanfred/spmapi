@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
+import sqlalchemy
 import sqlalchemy.ext.declarative
 
 import spmapi.utils.database
 
-Base = sqlalchemy.ext.declarative.declarative_base(
-    bind=spmapi.utils.database.engine
-)
+metadata = sqlalchemy.MetaData()
+Base = sqlalchemy.ext.declarative.declarative_base(metadata=metadata)
 Base.metadata.create_all(spmapi.utils.database.engine.sync_engine)

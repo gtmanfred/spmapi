@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 import spmapi.utils.tools as tools
+import spmapi.schemas.formula
 import sanic
 
 bp = sanic.Blueprint(name='formulas', version=1)
+
+formulas = spmapi.schemas.formula.Formula(many=True)
 
 
 @bp.post('/formulas')
@@ -31,6 +34,6 @@ async def list_formula(request):
 
     result = await tools.list_formulas(name)
     return sanic.response.json(
-        {'message': 'success', 'formulas': result},
+        {'message': 'success', 'formulas': formulas.dump(result).data},
         status=200
     )

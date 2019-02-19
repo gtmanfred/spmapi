@@ -12,7 +12,7 @@ from spmapi.utils.exceptions import (
     NameMatchError, FileConflict, NoFormulaFile
 )
 
-from spmapi.utils.database import engine
+from spmapi.utils.database import engine, Session
 
 
 async def upload(name, spmfile):
@@ -46,7 +46,7 @@ async def upload(name, spmfile):
                 name=name,
                 major=major, minor=minor, patch=patch,
                 release=release,
-                minimal_version=[
+                minimum_version=[
                     num for num in map(
                         int, str(formula.pop('minimum_version')).split('.')
                     )
@@ -70,19 +70,16 @@ async def upload(name, spmfile):
 
 
 async def list_formulas(name=None):
-    filters = []
+    session = Session()
+    query = session.query(Formula)
     if name is not None:
-        filters.append(Formula.name == name)
-    help(Formula.metadata)
-
-    """
-    async with engine.connect() as session:
-        return await session.execute(sqlalchemy.select(Formula))
-            Formula.query
-            .order_by(Formula.name.asc())
-            .order_by(Formula.major.desc())
-            .order_by(Formula.minor.desc())
-            .order_by(Formula.patch.desc())
-            .order_by(Formula.release.desc())
-        )
-    """
+        query = query.filter_by(Formula.name == name)
+    return (
+        query
+        .order_by(Formula.c.name)
+        .order_by(Formula.c.major.desc())
+        .order_by(Formula.c.minor.desc())
+        .order_by(Formula.c.patch.desc())
+        .order_by(Formula.c.release.desc())
+        .all()
+    )

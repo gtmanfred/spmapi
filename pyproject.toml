@@ -12,6 +12,7 @@ sanic = "^18.12"
 sqlalchemy_aio = "^0.14.0"
 sqlalchemy = "^1.2"
 aiobotocore = "^0.10.2"
+marshmallow = "^2.18"
 
 [tool.poetry.dev-dependencies]
 pytest = "^4.2"

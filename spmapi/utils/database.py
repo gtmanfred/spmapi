@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import sqlalchemy
+import sqlalchemy.orm
 import sqlalchemy_aio
 import os
 
@@ -18,3 +19,4 @@ class Connect(object):
 
 
 engine = Connect().engine
+Session = sqlalchemy.orm.sessionmaker(bind=engine.sync_engine)
