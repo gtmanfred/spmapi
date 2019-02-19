@@ -4,6 +4,5 @@ import sqlalchemy.ext.declarative
 
 import spmapi.utils.database
 
-metadata = sqlalchemy.MetaData()
-Base = sqlalchemy.ext.declarative.declarative_base(metadata=metadata)
+Base = sqlalchemy.ext.declarative.declarative_base()
 Base.metadata.create_all(spmapi.utils.database.engine.sync_engine)
