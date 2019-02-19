@@ -1,0 +1,11 @@
+nginx:
+    filename: nginx-0.1.0-1.spm
+    info:
+        description: Formula for installing Nginx web server
+        minimum_version: 2015.8
+        name: nginx
+        os: RedHat, Debian, Ubuntu, Suse, Gentoo
+        os_family: RedHat, Debian, Suse, Gentoo
+        release: 1
+        summary: Formula for installing Nginx
+        version: 0.1.0

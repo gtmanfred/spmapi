@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "spmapi"
+version = "0.1.0"
+description = "Api for SaltStack SPM Formulas"
+authors = ["Daniel Wallace <daniel@gtmanfred.com>"]
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+psycopg2-binary = "^2.7"
+sanic = "^18.12"
+sqlalchemy_aio = "^0.14.0"
+sqlalchemy = "^1.2"
+aiobotocore = "^0.10.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^4.2"
+pytest-cov = "^2.6"
+pytest-moto = "^0.2.0"
+pytest-docker = "^0.6.1"
+pytest-sqlalchemy = "^0.2.1"
+pytest-sanic = "^0.1.15"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
