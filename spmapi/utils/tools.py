@@ -76,10 +76,10 @@ async def list_formulas(name=None):
         query = query.filter_by(Formula.name == name)
     return (
         query
-        .order_by(Formula.c.name)
-        .order_by(Formula.c.major.desc())
-        .order_by(Formula.c.minor.desc())
-        .order_by(Formula.c.patch.desc())
-        .order_by(Formula.c.release.desc())
+        .order_by(Formula.name)
+        .order_by(Formula.major.desc())
+        .order_by(Formula.minor.desc())
+        .order_by(Formula.patch.desc())
+        .order_by(Formula.release.desc())
         .all()
     )

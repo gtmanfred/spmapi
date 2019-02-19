@@ -4,6 +4,8 @@ import sqlalchemy.orm
 import sqlalchemy_aio
 import os
 
+import spmapi.models
+
 
 class Connect(object):
     def __new__(cls):
@@ -20,3 +22,4 @@ class Connect(object):
 
 engine = Connect().engine
 Session = sqlalchemy.orm.sessionmaker(bind=engine.sync_engine)
+spmapi.models.create_all(engine.sync_engine)

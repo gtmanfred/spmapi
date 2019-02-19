@@ -33,3 +33,7 @@ class Formula(spmapi.models.Base):
             '.'.join([self.major, self.minor, self.patch]),
             self.release
         ]) + '.spm'
+
+    @property
+    def version(self):
+        return '.'.join(map(str, [self.major, self.minor, self.patch]))
